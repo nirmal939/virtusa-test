@@ -6,9 +6,6 @@ import com.virtusa.constant.ConvertNumToWordConstant;
 
 public class ConvertNumToWord {
 
-	private ConvertNumToWord() {
-	}
-
 	private static String convertLessThanOneThousand(int number) {
 		String soFar;
 
@@ -27,8 +24,14 @@ public class ConvertNumToWord {
 		return ConvertNumToWordConstant.NUM_NAMES[number] + ConvertNumToWordConstant.HUNDRED_AND + soFar;
 	}
 
+	/**
+	 * Perform conversion operation
+	 * @param number
+	 * @return string
+	 */
+	
 	public static String convert(long number) {
-		// 0 to 999 999 999 999
+		// 0 to 999,999,999,999
 		if (number == 0) {
 			return ConvertNumToWordConstant.ZERO;
 		}
@@ -92,10 +95,17 @@ public class ConvertNumToWord {
 		tradThousand = convertLessThanOneThousand(thousands);
 		result = result + tradThousand;
 
-		// remove extra spaces!
+		// remove spaces!
 		return result.replaceAll(ConvertNumToWordConstant.EXTRA_SPACE_1, ConvertNumToWordConstant.EMPTY)
 				.replaceAll(ConvertNumToWordConstant.EXTRA_SPACE_2, ConvertNumToWordConstant.EMPTY_VAL);
 	}
+	
+	/**
+	 * Check if given string is number or not
+	 * @param strNum
+	 * @return boolean
+	 */
+	
 	public static boolean isNumeric(String strNum) {
 	    return strNum.matches("-?\\d+(\\.\\d+)?");
 	}
